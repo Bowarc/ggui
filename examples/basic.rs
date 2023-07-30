@@ -6,52 +6,135 @@ fn add_every_anchor(ui: &mut ggui::Ui) {
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::CenterCenter, None),
-        ggui::Point::new(200., 200.),
+        (100., 100.),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::Topleft, None),
-        ggui::Point::new(100., 100.),
+        (
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+        ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::TopCenter, None),
-        ggui::Point::new(100., 100.),
+        (
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+        ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
-        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::Topright, None),
-        ggui::Point::new(100., 100.),
-    ));
-    ui.add_element(ggui::element::Element::new(
-        ggui::element::ElementType::new_button(),
-        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::LeftCenter, None),
-        ggui::Point::new(100., 100.),
-    ));
-    ui.add_element(ggui::element::Element::new(
-        ggui::element::ElementType::new_button(),
-        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::Botleft, None),
-        ggui::Point::new(100., 100.),
-    ));
-    ui.add_element(ggui::element::Element::new(
-        ggui::element::ElementType::new_button(),
-        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::BotCenter, None),
-        ggui::Point::new(100., 100.),
-    ));
-    ui.add_element(ggui::element::Element::new(
-        ggui::element::ElementType::new_button(),
-        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::Botright, None),
-        ggui::Point::new(100., 100.),
+        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::TopRight, None),
+        (
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+        ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::RightCenter, None),
-        ggui::Point::new(100., 100.),
+        (
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+        ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
-        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::CenterCenter, None),
-        ggui::Point::new(100., 100.),
+        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::BotRight, None),
+        (
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+        ),
+    ));
+    ui.add_element(ggui::element::Element::new(
+        ggui::element::ElementType::new_button(),
+        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::BotCenter, None),
+        (
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+        ),
+    ));
+    ui.add_element(ggui::element::Element::new(
+        ggui::element::ElementType::new_button(),
+        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::BotLeft, None),
+        (
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+        ),
+    ));
+    ui.add_element(ggui::element::Element::new(
+        ggui::element::ElementType::new_button(),
+        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::LeftCenter, None),
+        (
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+            (
+                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
+                ggui::value::ValueOperation::Mul,
+                ggui::value::Value::from(0.1),
+            ),
+        ),
     ));
 }
 

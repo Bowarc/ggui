@@ -16,19 +16,19 @@ pub enum Anchor {
     CenterCenter,
     Topleft,
     TopCenter,
-    Topright,
-    LeftCenter,
-    Botleft,
-    BotCenter,
-    Botright,
+    TopRight,
     RightCenter,
+    BotRight,
+    BotCenter,
+    BotLeft,
+    LeftCenter,
 }
 
 pub struct Element {
     pub t: ElementType,
     pub id: crate::Id,
     pub position: ElementPosition,
-    pub size: crate::Point,
+    pub size: ggez::mint::Point2<crate::Value>,
 }
 
 impl ElementType {
@@ -75,12 +75,12 @@ impl Anchor {
             }
             Anchor::Topleft => crate::Point::ZERO,
             Anchor::TopCenter => crate::Point::new(drawable_size.x / 2. - element_size.x / 2., 0.),
-            Anchor::Topright => crate::Point::new(drawable_size.x - element_size.x, 0.),
-            Anchor::LeftCenter => crate::Point::new(
+            Anchor::TopRight => crate::Point::new(drawable_size.x - element_size.x, 0.),
+            Anchor::RightCenter => crate::Point::new(
                 drawable_size.x - element_size.x,
                 drawable_size.y / 2. - element_size.y / 2.,
             ),
-            Anchor::Botleft => crate::Point::new(
+            Anchor::BotRight => crate::Point::new(
                 drawable_size.x - element_size.x,
                 drawable_size.y - element_size.y,
             ),
@@ -88,16 +88,21 @@ impl Anchor {
                 drawable_size.x / 2. - element_size.x / 2.,
                 drawable_size.y - element_size.y,
             ),
-            Anchor::Botright => crate::Point::new(0., drawable_size.y - element_size.y),
-            Anchor::RightCenter => {
-                crate::Point::new(0., drawable_size.y / 2. - element_size.y / 2.)
-            }
+            Anchor::BotLeft => crate::Point::new(0., drawable_size.y - element_size.y),
+            Anchor::LeftCenter => crate::Point::new(0., drawable_size.y / 2. - element_size.y / 2.),
         }
     }
 }
 
 impl Element {
-    pub fn new(t: ElementType, position: ElementPosition, size: crate::Point) -> Self {
+    pub fn new(
+        t: ElementType,
+        position: ElementPosition,
+        size: (impl Into<crate::Value>, impl Into<crate::Value>),
+    ) -> Self {
+        let x = size.0.into();
+        let y = size.1.into();
+        let size = ggez::mint::Point2::from([x, y]);
         Element {
             t,
             id: String::from("This is a test"),
@@ -111,7 +116,9 @@ impl Element {
         ctx: &mut ggez::Context,
         canvas: &mut ggez::graphics::Canvas,
     ) -> ggez::GameResult {
-        let position = self.position.compute(ctx, self.size);
+        let size = crate::Point::new(self.size.x.compute(ctx), self.size.y.compute(ctx));
+
+        let position = self.position.compute(ctx, size);
 
         match &self.t {
             ElementType::Button(_btn) => {
@@ -121,8 +128,8 @@ impl Element {
                     ggez::graphics::Rect::new(
                         position.x as f32,
                         position.y as f32,
-                        self.size.x as f32,
-                        self.size.y as f32,
+                        size.x as f32,
+                        size.y as f32,
                     ),
                     ggez::graphics::Color::from_rgb(0, 175, 150),
                 )?;
