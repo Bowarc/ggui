@@ -5,7 +5,8 @@ I heard from a friend that it is supposed to be hard to 'do right'
 
 Current state:  
 - [ ] Element
-    - [x] Element Anchor  
+    - [x] Element Anchor
+    - [x] Magic values and magic values operations 
     - [ ] Element Types
     - [ ] Element Styles
 - [ ] Events
