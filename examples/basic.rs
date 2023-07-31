@@ -293,20 +293,8 @@ impl ggez::event::EventHandler for MainState {
 
 fn main() -> ggez::GameResult {
     let cb = ggez::ContextBuilder::new("Name", "Author").window_mode(ggez::conf::WindowMode {
-        width: 800.,
-        height: 600.,
-        maximized: false,
-        fullscreen_type: ggez::conf::FullscreenType::Windowed,
-        borderless: false,
-        min_width: 1.0,
-        max_width: 0.0,
-        min_height: 1.0,
-        max_height: 0.0,
         resizable: true,
-        visible: true,
-        transparent: false,
-        resize_on_scale_factor_change: false,
-        logical_size: None,
+        ..Default::default()
     });
     let (mut ctx, event_loop) = cb.build()?;
     let state = MainState::new(&mut ctx)?;
