@@ -3,6 +3,9 @@ struct MainState {
 }
 
 fn add_every_anchor(ui: &mut ggui::Ui) {
+    let v: ggui::Value =
+        10. + ggui::value::MagicValue::ScreenSizeW + ggui::value::MagicValue::MousePosX;
+
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::CenterCenter, None),
@@ -13,9 +16,9 @@ fn add_every_anchor(ui: &mut ggui::Ui) {
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::Topleft, None),
         (
             (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+                ggui::value::MagicValue::ScreenSizeW.into(),
                 ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
+                0.1.into(),
             ),
             (
                 ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
