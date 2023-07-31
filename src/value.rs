@@ -131,9 +131,9 @@ impl std::ops::Add<Value> for f64 {
 ///////////////////
 
 // This allows:
-// Value::Fixed(1.) + 10.;
-// Value::Fixed(1.) + MagicValue::ScreenSizeW;
-// Value::Fixed(1.) + Value::Fixed(1.);
+// Value::Fixed(1.) - 10.;
+// Value::Fixed(1.) - MagicValue::ScreenSizeW;
+// Value::Fixed(1.) - Value::Fixed(1.);
 impl<T: Into<Value>> std::ops::Sub<T> for Value {
     type Output = Value;
     fn sub(self, other: T) -> Self::Output {
@@ -142,9 +142,9 @@ impl<T: Into<Value>> std::ops::Sub<T> for Value {
 }
 
 // This allows:
-// MagicValue::ScreenSizeW + 10.;
-// MagicValue::ScreenSizeW + MagicValue::ScreenSizeW;
-// MagicValue::ScreenSizeW + Value::Fixed(1.);
+// MagicValue::ScreenSizeW - 10.;
+// MagicValue::ScreenSizeW - MagicValue::ScreenSizeW;
+// MagicValue::ScreenSizeW - Value::Fixed(1.);
 impl<T: Into<Value>> std::ops::Sub<T> for MagicValue {
     type Output = Value;
     fn sub(self, other: T) -> Self::Output {
@@ -156,7 +156,7 @@ impl<T: Into<Value>> std::ops::Sub<T> for MagicValue {
     }
 }
 // This allows:
-// 10. + MagicValue::ScreenSizeW;
+// 10. - MagicValue::ScreenSizeW;
 impl std::ops::Sub<MagicValue> for f64 {
     type Output = Value;
     fn sub(self, other: MagicValue) -> Self::Output {
@@ -168,7 +168,7 @@ impl std::ops::Sub<MagicValue> for f64 {
     }
 }
 // This allows:
-// 10. + Value::Fixed(1.);
+// 10. - Value::Fixed(1.);
 impl std::ops::Sub<Value> for f64 {
     type Output = Value;
     fn sub(self, other: Value) -> Self::Output {
@@ -181,9 +181,9 @@ impl std::ops::Sub<Value> for f64 {
 ///////////////////
 
 // This allows:
-// Value::Fixed(1.) + 10.;
-// Value::Fixed(1.) + MagicValue::ScreenSizeW;
-// Value::Fixed(1.) + Value::Fixed(1.);
+// Value::Fixed(1.) * 10.;
+// Value::Fixed(1.) * MagicValue::ScreenSizeW;
+// Value::Fixed(1.) * Value::Fixed(1.);
 impl<T: Into<Value>> std::ops::Mul<T> for Value {
     type Output = Value;
     fn mul(self, other: T) -> Self::Output {
@@ -192,9 +192,9 @@ impl<T: Into<Value>> std::ops::Mul<T> for Value {
 }
 
 // This allows:
-// MagicValue::ScreenSizeW + 10.;
-// MagicValue::ScreenSizeW + MagicValue::ScreenSizeW;
-// MagicValue::ScreenSizeW + Value::Fixed(1.);
+// MagicValue::ScreenSizeW * 10.;
+// MagicValue::ScreenSizeW * MagicValue::ScreenSizeW;
+// MagicValue::ScreenSizeW * Value::Fixed(1.);
 impl<T: Into<Value>> std::ops::Mul<T> for MagicValue {
     type Output = Value;
     fn mul(self, other: T) -> Self::Output {
@@ -206,7 +206,7 @@ impl<T: Into<Value>> std::ops::Mul<T> for MagicValue {
     }
 }
 // This allows:
-// 10. + MagicValue::ScreenSizeW;
+// 10. * MagicValue::ScreenSizeW;
 impl std::ops::Mul<MagicValue> for f64 {
     type Output = Value;
     fn mul(self, other: MagicValue) -> Self::Output {
@@ -218,7 +218,7 @@ impl std::ops::Mul<MagicValue> for f64 {
     }
 }
 // This allows:
-// 10. + Value::Fixed(1.);
+// 10. * Value::Fixed(1.);
 impl std::ops::Mul<Value> for f64 {
     type Output = Value;
     fn mul(self, other: Value) -> Self::Output {
@@ -231,9 +231,9 @@ impl std::ops::Mul<Value> for f64 {
 ///////////////////
 
 // This allows:
-// Value::Fixed(1.) + 10.;
-// Value::Fixed(1.) + MagicValue::ScreenSizeW;
-// Value::Fixed(1.) + Value::Fixed(1.);
+// Value::Fixed(1.) / 10.;
+// Value::Fixed(1.) / MagicValue::ScreenSizeW;
+// Value::Fixed(1.) / Value::Fixed(1.);
 impl<T: Into<Value>> std::ops::Div<T> for Value {
     type Output = Value;
     fn div(self, other: T) -> Self::Output {
@@ -242,9 +242,9 @@ impl<T: Into<Value>> std::ops::Div<T> for Value {
 }
 
 // This allows:
-// MagicValue::ScreenSizeW + 10.;
-// MagicValue::ScreenSizeW + MagicValue::ScreenSizeW;
-// MagicValue::ScreenSizeW + Value::Fixed(1.);
+// MagicValue::ScreenSizeW / 10.;
+// MagicValue::ScreenSizeW / MagicValue::ScreenSizeW;
+// MagicValue::ScreenSizeW / Value::Fixed(1.);
 impl<T: Into<Value>> std::ops::Div<T> for MagicValue {
     type Output = Value;
     fn div(self, other: T) -> Self::Output {
@@ -256,7 +256,7 @@ impl<T: Into<Value>> std::ops::Div<T> for MagicValue {
     }
 }
 // This allows:
-// 10. + MagicValue::ScreenSizeW;
+// 10. / MagicValue::ScreenSizeW;
 impl std::ops::Div<MagicValue> for f64 {
     type Output = Value;
     fn div(self, other: MagicValue) -> Self::Output {
@@ -268,7 +268,7 @@ impl std::ops::Div<MagicValue> for f64 {
     }
 }
 // This allows:
-// 10. + Value::Fixed(1.);
+// 10. / Value::Fixed(1.);
 impl std::ops::Div<Value> for f64 {
     type Output = Value;
     fn div(self, other: Value) -> Self::Output {

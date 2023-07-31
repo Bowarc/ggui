@@ -114,7 +114,7 @@ impl ggez::event::EventHandler for MainState {
 
         let t = std::time::Instant::now();
         self.ui.draw(ctx, &mut canvas)?;
-        println!("Ui draw time {}", t.elapsed().as_secs_f64());
+        println!("Ui draw time {}s", t.elapsed().as_secs_f64());
 
         canvas.finish(ctx)?;
 
