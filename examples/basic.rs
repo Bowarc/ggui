@@ -3,9 +3,6 @@ struct MainState {
 }
 
 fn add_every_anchor(ui: &mut ggui::Ui) {
-    let v: ggui::Value =
-        10. + ggui::value::MagicValue::ScreenSizeW + ggui::value::MagicValue::MousePosX;
-
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::CenterCenter, None),
@@ -15,127 +12,73 @@ fn add_every_anchor(ui: &mut ggui::Ui) {
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::Topleft, None),
         (
-            (
-                ggui::value::MagicValue::ScreenSizeW.into(),
-                ggui::value::ValueOperation::Mul,
-                0.1.into(),
-            ),
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
+            ggui::value::MagicValue::ScreenSizeW * 0.1,
+            ggui::value::MagicValue::ScreenSizeH * 0.1,
         ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::TopCenter, None),
         (
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
+            ggui::value::MagicValue::ScreenSizeW * 0.1,
+            ggui::value::MagicValue::ScreenSizeH * 0.1,
         ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::TopRight, None),
         (
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
+            ggui::value::MagicValue::ScreenSizeW * 0.1,
+            ggui::value::MagicValue::ScreenSizeH * 0.1,
         ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::RightCenter, None),
         (
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
+            ggui::value::MagicValue::ScreenSizeW * 0.1,
+            ggui::value::MagicValue::ScreenSizeH * 0.1,
         ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::BotRight, None),
         (
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
+            ggui::value::MagicValue::ScreenSizeW * 0.1,
+            ggui::value::MagicValue::ScreenSizeH * 0.1,
         ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::BotCenter, None),
         (
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
+            ggui::value::MagicValue::ScreenSizeW * 0.1,
+            ggui::value::MagicValue::ScreenSizeH * 0.1,
         ),
     ));
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::BotLeft, None),
         (
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
-                ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
-            ),
+            ggui::value::MagicValue::ScreenSizeW * 0.1,
+            ggui::value::MagicValue::ScreenSizeH * 0.1,
         ),
     ));
+
+    // This one is kept extremely verbose to show what abstraction i implemented
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
         ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::LeftCenter, None),
         (
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeW),
+            ggui::Value::multiple(
+                ggui::Value::magic(ggui::value::MagicValue::ScreenSizeW),
                 ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
+                ggui::Value::fixed(0.1),
             ),
-            (
-                ggui::value::Value::from(ggui::value::MagicValue::ScreenSizeH),
+            ggui::Value::multiple(
+                ggui::Value::magic(ggui::value::MagicValue::ScreenSizeH),
                 ggui::value::ValueOperation::Mul,
-                ggui::value::Value::from(0.1),
+                ggui::Value::fixed(0.1),
             ),
         ),
     ));

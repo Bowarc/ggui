@@ -543,5 +543,22 @@ mod operations {
     }
 
     #[test]
-    fn operation_order() {}
+    fn operation_order() {
+        // The purpose of this one is to check that the Order of operation is kept
+
+        // The 100. is converted into a value else he whole operation creates a f64 instead of a Value.
+        // This is for now the biggest flaw of this system
+        assert_eq!(
+            10. + 20. * Value::fixed(100.),
+            Value::multiple(
+                Value::fixed(10.),
+                ValueOperation::Add,
+                Value::multiple(Value::fixed(20.), ValueOperation::Mul, Value::fixed(100.))
+            )
+        );
+
+        // I also tested that:
+        // assert_eq!(2010., (10. + 20. * ggui::Value::fixed(100.)).compute(ctx));
+        // doens't create any panic
+    }
 }
