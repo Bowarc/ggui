@@ -112,9 +112,9 @@ impl ggez::event::EventHandler for MainState {
 
         let mut canvas = ggez::graphics::Canvas::from_frame(ctx, None);
 
-        let t = std::time::Instant::now();
+        let s = ggui::time::Stopwatch::start_new();
         self.ui.draw(ctx, &mut canvas)?;
-        println!("Ui draw time {}s", t.elapsed().as_secs_f64());
+        println!("Ui draw time {s}",);
 
         canvas.finish(ctx)?;
 

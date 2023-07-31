@@ -114,7 +114,8 @@ impl Element {
     pub fn draw(
         &mut self,
         ctx: &mut ggez::Context,
-        canvas: &mut ggez::graphics::Canvas,
+        _canvas: &mut ggez::graphics::Canvas,
+        global_mesh: &mut ggez::graphics::MeshBuilder,
     ) -> ggez::GameResult {
         let size = crate::Point::new(self.size.x.compute(ctx), self.size.y.compute(ctx));
 
@@ -122,8 +123,7 @@ impl Element {
 
         match &self.t {
             ElementType::Button(_btn) => {
-                let mesh = ggez::graphics::Mesh::new_rectangle(
-                    ctx,
+                global_mesh.rectangle(
                     ggez::graphics::DrawMode::fill(),
                     ggez::graphics::Rect::new(
                         position.x as f32,
@@ -133,8 +133,6 @@ impl Element {
                     ),
                     ggez::graphics::Color::from_rgb(0, 175, 150),
                 )?;
-
-                canvas.draw(&mesh, ggez::graphics::DrawParam::default())
             }
         }
 

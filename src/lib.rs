@@ -1,6 +1,7 @@
 pub mod element;
 pub mod event;
 pub mod point;
+pub mod time;
 pub mod value;
 
 pub use point::Point;
@@ -28,9 +29,15 @@ impl Ui {
         ctx: &mut ggez::Context,
         canvas: &mut ggez::graphics::Canvas,
     ) -> ggez::GameResult {
+        let mut global_mesh = ggez::graphics::MeshBuilder::new();
         for elem in self.elements.iter_mut() {
-            elem.draw(ctx, canvas)?
+            elem.draw(ctx, canvas, &mut global_mesh)?
         }
+
+        canvas.draw(
+            &ggez::graphics::Mesh::from_data(ctx, global_mesh.build()),
+            ggez::graphics::DrawParam::new(),
+        );
         Ok(())
     }
 }
