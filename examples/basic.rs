@@ -148,7 +148,7 @@ impl MainState {
 }
 
 impl ggez::event::EventHandler for MainState {
-    fn update(&mut self, ctx: &mut ggez::context::Context) -> ggez::GameResult {
+    fn update(&mut self, _ctx: &mut ggez::context::Context) -> ggez::GameResult {
         Ok(())
     }
 
@@ -284,8 +284,8 @@ impl ggez::event::EventHandler for MainState {
     fn on_error(
         &mut self,
         _ctx: &mut ggez::context::Context,
-        origin: ggez::event::ErrorOrigin,
-        e: ggez::GameError,
+        _origin: ggez::event::ErrorOrigin,
+        _e: ggez::GameError,
     ) -> bool {
         true
     }
