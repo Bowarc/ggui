@@ -60,7 +60,7 @@ impl ElementPosition {
 
                 let anchor_position = anchor.compute(drawable_size, element_size);
 
-                anchor_position - offset
+                anchor_position + offset
             }
         }
     }

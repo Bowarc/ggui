@@ -3,9 +3,18 @@ struct MainState {
 }
 
 fn add_every_anchor(ui: &mut ggui::Ui) {
+    // Anchored at the centerX centerY, but the offset reset the centerX to 0 and sets the X to the MouseX magic value
     ui.add_element(ggui::element::Element::new(
         ggui::element::ElementType::new_button(),
-        ggui::element::ElementPosition::new_anchor(ggui::element::Anchor::CenterCenter, None),
+        ggui::element::ElementPosition::new_anchor(
+            ggui::element::Anchor::CenterCenter,
+            // btw this shows that the order of operation is perfectly computed
+            Some(ggez::mint::Point2::from([
+                (0. - ggui::value::MagicValue::ScreenSizeW / 2.
+                    + ggui::value::MagicValue::MousePosX),
+                ggui::Value::from(0.),
+            ])),
+        ),
         (100., 100.),
     ));
     ui.add_element(ggui::element::Element::new(
@@ -103,7 +112,9 @@ impl ggez::event::EventHandler for MainState {
 
         let mut canvas = ggez::graphics::Canvas::from_frame(ctx, None);
 
+        let t = std::time::Instant::now();
         self.ui.draw(ctx, &mut canvas)?;
+        println!("Ui draw time {}", t.elapsed().as_secs_f64());
 
         canvas.finish(ctx)?;
 
