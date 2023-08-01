@@ -11,3 +11,9 @@ Current state:
     - [ ] Element Styles
 - [ ] Events
 - [ ] Callbacks ? 
+
+
+
+
+I might have a problem going forward with this lib, i want to design it for my game, by my game as a rly specific way to draw images.
+(sprite ids, sprite bank and render requests, InstanceArrays are only queried at render time not render request creation.)

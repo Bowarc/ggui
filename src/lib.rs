@@ -13,11 +13,17 @@ pub struct Ui {
     elements: Vec<element::Element>,
 }
 
-impl Ui {
-    pub fn new() -> Self {
+impl Default for Ui {
+    fn default() -> Self {
         Self {
             elements: Vec::new(),
         }
+    }
+}
+
+impl Ui {
+    pub fn new() -> Self {
+        Self::default()
     }
 
     pub fn add_element(&mut self, elem: element::Element) {
