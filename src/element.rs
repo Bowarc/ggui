@@ -1,5 +1,13 @@
 mod button;
 
+pub struct Element {
+    pub t: ElementType,
+    pub id: crate::Id,
+    pub position: ElementPosition,
+    pub size: ggez::mint::Point2<crate::Value>,
+    pub state: State,
+}
+
 pub enum ElementType {
     Button(button::Button),
 }
@@ -24,11 +32,11 @@ pub enum Anchor {
     LeftCenter,
 }
 
-pub struct Element {
-    pub t: ElementType,
-    pub id: crate::Id,
-    pub position: ElementPosition,
-    pub size: ggez::mint::Point2<crate::Value>,
+#[derive(Default)]
+pub struct State {
+    pub hovered: bool,
+    pub clicked: bool,
+    pub focussed: bool,
 }
 
 impl ElementType {
@@ -108,7 +116,20 @@ impl Element {
             id: String::from("This is a test"),
             position,
             size,
+            state: State::default(),
         }
+    }
+    pub fn compute_rect(&self, ctx: &mut ggez::Context) -> ggez::graphics::Rect {
+        let size = crate::Point::new(self.size.x.compute(ctx), self.size.y.compute(ctx));
+
+        let position = self.position.compute(ctx, size);
+
+        ggez::graphics::Rect::new(
+            position.x as f32,
+            position.y as f32,
+            size.x as f32,
+            size.y as f32,
+        )
     }
 
     pub fn draw(
@@ -117,20 +138,12 @@ impl Element {
         _canvas: &mut ggez::graphics::Canvas,
         global_mesh: &mut ggez::graphics::MeshBuilder,
     ) -> ggez::GameResult {
-        let size = crate::Point::new(self.size.x.compute(ctx), self.size.y.compute(ctx));
-
-        let position = self.position.compute(ctx, size);
-
+        let rect = self.compute_rect(ctx);
         match &self.t {
             ElementType::Button(_btn) => {
                 global_mesh.rectangle(
                     ggez::graphics::DrawMode::fill(),
-                    ggez::graphics::Rect::new(
-                        position.x as f32,
-                        position.y as f32,
-                        size.x as f32,
-                        size.y as f32,
-                    ),
+                    rect,
                     ggez::graphics::Color::from_rgb(0, 175, 150),
                 )?;
             }

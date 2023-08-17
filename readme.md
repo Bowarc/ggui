@@ -1,3 +1,6 @@
+# Implemented in Vupa but abandonned here as i don't want to oss Vupa for now.
+Feel free to use this as you want. 
+
 Idk if that will ever be usable but i think ggez rly need a ui crate. (+ Vupa rly needs some ui)
 
 I heard from a friend that it is supposed to be hard to 'do right'

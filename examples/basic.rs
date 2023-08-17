@@ -103,7 +103,9 @@ impl MainState {
 }
 
 impl ggez::event::EventHandler for MainState {
-    fn update(&mut self, _ctx: &mut ggez::context::Context) -> ggez::GameResult {
+    fn update(&mut self, ctx: &mut ggez::context::Context) -> ggez::GameResult {
+        self.ui.update(ctx);
+
         Ok(())
     }
 
@@ -124,19 +126,21 @@ impl ggez::event::EventHandler for MainState {
     fn mouse_button_down_event(
         &mut self,
         _ctx: &mut ggez::context::Context,
-        _button: ggez::input::mouse::MouseButton,
-        _x: f32,
-        _y: f32,
+        button: ggez::input::mouse::MouseButton,
+        x: f32,
+        y: f32,
     ) -> ggez::GameResult {
+        self.ui.register_mouse_press(button, x, y);
         Ok(())
     }
     fn mouse_button_up_event(
         &mut self,
         _ctx: &mut ggez::context::Context,
-        _button: ggez::input::mouse::MouseButton,
-        _x: f32,
-        _y: f32,
+        button: ggez::input::mouse::MouseButton,
+        x: f32,
+        y: f32,
     ) -> ggez::GameResult {
+        self.ui.register_mouse_release(button, x, y);
         Ok(())
     }
     fn mouse_motion_event(
@@ -159,31 +163,35 @@ impl ggez::event::EventHandler for MainState {
     fn mouse_wheel_event(
         &mut self,
         _ctx: &mut ggez::context::Context,
-        _x: f32,
-        _y: f32,
+        x: f32,
+        y: f32,
     ) -> ggez::GameResult {
+        self.ui.register_mouse_wheel(x, y);
         Ok(())
     }
     fn key_down_event(
         &mut self,
         _ctx: &mut ggez::context::Context,
-        _input: ggez::input::keyboard::KeyInput,
-        _repeated: bool,
+        input: ggez::input::keyboard::KeyInput,
+        repeated: bool,
     ) -> ggez::GameResult {
+        self.ui.register_key_down(input, repeated);
         Ok(())
     }
     fn key_up_event(
         &mut self,
         _ctx: &mut ggez::context::Context,
-        _input: ggez::input::keyboard::KeyInput,
+        input: ggez::input::keyboard::KeyInput,
     ) -> ggez::GameResult {
+        self.ui.register_key_up(input);
         Ok(())
     }
     fn text_input_event(
         &mut self,
         _ctx: &mut ggez::context::Context,
-        _character: char,
+        character: char,
     ) -> ggez::GameResult {
+        self.ui.register_text_input(character);
         Ok(())
     }
     fn touch_event(
