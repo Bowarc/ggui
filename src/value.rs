@@ -557,8 +557,21 @@ mod operations {
             )
         );
 
+        assert_eq!(
+            // Need this first Value::fixed else it computes the 10.*20. as f64 and not values
+            Value::fixed(10.) * 20. + Value::fixed(100.),
+            Value::multiple(
+                Value::multiple(Value::Fixed(10.), ValueOperation::Mul, Value::fixed(20.)),
+                ValueOperation::Add,
+                Value::fixed(100.)
+            )
+        );
+
         // I also tested that:
+        // assert_eq!(300., (10. * 20. + ggui::Value::fixed(100.)).compute(ctx));
         // assert_eq!(2010., (10. + 20. * ggui::Value::fixed(100.)).compute(ctx));
         // doens't create any panic
+        // So we can be 100% sure that the order of operation is kept
+        //
     }
 }
