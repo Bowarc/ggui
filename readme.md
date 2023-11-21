@@ -1,5 +1,6 @@
-# Implemented in Vupa but abandonned here as i don't want to oss Vupa for now.
-Feel free to use this as you want. 
+# This repo isnt updated.
+the most recent version is in my [chess_game](github.com/bowarc/chess_game) repo but the ui depends on my layered rendering system so i cant have it as a repo.
+Maybe it'll be in my [Crate](github.com/bowarc/Crates) repo with the layered renderer.
 
 Idk if that will ever be usable but i think ggez rly need a ui crate. (+ Vupa rly needs some ui)
 
