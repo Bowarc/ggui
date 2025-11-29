@@ -252,13 +252,14 @@ impl ggez::event::EventHandler for MainState {
         _origin: ggez::event::ErrorOrigin,
         _e: ggez::GameError,
     ) -> bool {
+        println!("{_e}");
         true
     }
 }
 
 fn main() -> ggez::GameResult {
     let cb = ggez::ContextBuilder::new("Name", "Author").window_mode(ggez::conf::WindowMode {
-        resizable: true,
+        // resizable: true,
         ..Default::default()
     });
     let (mut ctx, event_loop) = cb.build()?;

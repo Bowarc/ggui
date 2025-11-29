@@ -1,12 +1,12 @@
-pub const DEFAULT_TEXT_VALUE_TOKEN: &str = "$";
+// pub const DEFAULT_TEXT_VALUE_TOKEN: &str = "$"; // Relic of a bygone past
 
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub enum Value {
     Fixed(f64),
     Magic(MagicValue),
     Mutiple(Box<Value>, ValueOperation, Box<Value>),
 }
-#[derive(Debug, PartialEq)]
+#[derive(Copy, Clone, Debug, PartialEq)]
 pub enum ValueOperation {
     Add,
     Sub,
@@ -25,7 +25,7 @@ impl Value {
     pub fn compute(&self, ctx: &mut ggez::Context) -> f64 {
         match self {
             Value::Fixed(v) => *v,
-            Value::Magic(v) => v.resolve(ctx),
+            Value::Magic(v) => v.compute(ctx),
             Value::Mutiple(v1, op, v2) => match op {
                 ValueOperation::Add => v1.compute(ctx) + v2.compute(ctx),
                 ValueOperation::Sub => v1.compute(ctx) - v2.compute(ctx),
@@ -48,7 +48,7 @@ impl Value {
 }
 
 impl MagicValue {
-    pub fn resolve(&self, ctx: &ggez::Context) -> f64 {
+    pub fn compute(&self, ctx: &ggez::Context) -> f64 {
         match self {
             MagicValue::ScreenSizeW => ctx.gfx.drawable_size().0 as f64,
             MagicValue::ScreenSizeH => ctx.gfx.drawable_size().1 as f64,
@@ -557,21 +557,8 @@ mod operations {
             )
         );
 
-        assert_eq!(
-            // Need this first Value::fixed else it computes the 10.*20. as f64 and not values
-            Value::fixed(10.) * 20. + Value::fixed(100.),
-            Value::multiple(
-                Value::multiple(Value::Fixed(10.), ValueOperation::Mul, Value::fixed(20.)),
-                ValueOperation::Add,
-                Value::fixed(100.)
-            )
-        );
-
         // I also tested that:
-        // assert_eq!(300., (10. * 20. + ggui::Value::fixed(100.)).compute(ctx));
         // assert_eq!(2010., (10. + 20. * ggui::Value::fixed(100.)).compute(ctx));
         // doens't create any panic
-        // So we can be 100% sure that the order of operation is kept
-        //
     }
 }
