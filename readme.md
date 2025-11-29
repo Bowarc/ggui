@@ -1,22 +1,24 @@
-# Implemented in Vupa but abandonned here as i don't want to oss Vupa for now.
-Feel free to use this as you want. 
-
-Idk if that will ever be usable but i think ggez rly need a ui crate. (+ Vupa rly needs some ui)
-
-I heard from a friend that it is supposed to be hard to 'do right'
+# User interface lib for the GGEZ game framework
 
 
-Current state:  
-- [ ] Element
-    - [x] Element Anchor
-    - [x] Magic values and magic values operations 
-    - [ ] Element Types
-    - [ ] Element Styles
-- [ ] Events
-- [ ] Callbacks ? 
+Current state:
+- [x] Dynamic values
+- [x] Events
+- [x] Basic styling
+- [X] Simple widgets
+- [ ] Lots of usefull widgets
+  - [x] Buttons
+  - [x] Texts
+  - [x] Text Edits
+  - [x] Graphs
+  - [x] Images
+  - [ ] Videos
+  - [ ] ?
+- [x] Image in texts (Something like LoL does)
+
+I can't port the image optimisations I had for my games without making the lib too restrictive, so storing `ggez::graphics::Image`s is for now the solution.
+
+There is also a good amount of easy optimisations to do (like using a hashmap to store elements)
+And the example isn't updated, so it's not finished yet.
 
 
-
-
-I might have a problem going forward with this lib, i want to design it for my game, by my game as a rly specific way to draw images.
-(sprite ids, sprite bank and render requests, InstanceArrays are only queried at render time not render request creation.)
